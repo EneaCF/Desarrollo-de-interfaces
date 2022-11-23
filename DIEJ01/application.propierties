@@ -1,0 +1,6 @@
+#URL
+application.url=jdbc:mysql://localhost:3306/etvmallorca
+#USER
+application.user=root
+#PASSWORD
+application.password= 
