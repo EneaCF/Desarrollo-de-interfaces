@@ -52,12 +52,19 @@ public class Loggin extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
 
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
 
         jLabel1.setText("LOGO");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(130, 36, 130, 130);
+        jLabel1.setBounds(140, 10, 130, 130);
 
         jLabel2.setText("PASSWORD");
         jPanel1.add(jLabel2);
@@ -67,7 +74,7 @@ public class Loggin extends javax.swing.JFrame {
         jPanel1.add(jLabel3);
         jLabel3.setBounds(30, 200, 70, 16);
 
-        txtPassword.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtPassword.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         txtPassword.setForeground(new java.awt.Color(153, 153, 153));
         txtPassword.setText("***********");
         txtPassword.setBorder(null);
@@ -82,15 +89,20 @@ public class Loggin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtPassword);
-        txtPassword.setBounds(30, 330, 330, 15);
+        txtPassword.setBounds(30, 330, 330, 17);
 
-        txtUsuario.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtUsuario.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(153, 153, 153));
         txtUsuario.setText("Ingresa tu nombre de usuario...");
         txtUsuario.setBorder(null);
         txtUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtUsuarioMousePressed(evt);
+            }
+        });
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
             }
         });
         jPanel1.add(txtUsuario);
@@ -132,7 +144,7 @@ public class Loggin extends javax.swing.JFrame {
             //JOptionPane.showConfirmDialog(this, "Loggin CORRECTO");
             JOptionPane.showMessageDialog(this,"Bienvenido!");
             //this.dispose();
-            Main.ventPrin.setEnabled(true);
+            //Main.ventPrin.setEnabled(true);
             this.setVisible(false);
             
             //main.setVisible(true);
@@ -167,7 +179,14 @@ public class Loggin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtPasswordMousePressed
 
-    
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        //Main.ventPrin.setEnabled(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_formWindowClosed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

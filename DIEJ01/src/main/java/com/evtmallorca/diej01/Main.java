@@ -6,6 +6,7 @@ import com.evtmallorca.diej01.dao.DataAcces;
 import com.evtmallorca.diej01.dao.Municipi;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,14 +15,16 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Main extends javax.swing.JFrame {
     
-    public static Main ventPrin = new Main();
+    //public static Main ventPrin = new Main();
+    public Allotjament seleccionado;
+    public DataAcces da = new DataAcces();
     
     /**
      * Creates new form Main
      */
     public Main() {
-        DataAcces da = new DataAcces();
-        ventPrin = this;
+        
+        //ventPrin = this;
         initComponents();
         
         //DefaultTableModel modelo=(DefaultTableModel) jTable1.getModel();
@@ -36,15 +39,15 @@ public class Main extends javax.swing.JFrame {
         }
         DefaultTableModel tabelModel;
         tabelModel = new DefaultTableModel(objData,columnas){
-            //membuat tabel tidak bisa diedit saat diklik
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
             }
         };
-        
         jTable1.setModel(tabelModel);
-    
+
+        //seleccionado = jTable1.resul
+       // txtPropiedadId.setText(Integer.parseInt());
         
         List<Municipi> test = new ArrayList(da.getMunicipis());
         String municipios = "";
@@ -54,6 +57,18 @@ public class Main extends javax.swing.JFrame {
         jLabel1.setText(municipios);
         this.setLocationRelativeTo(null);
         
+    }
+    
+    private void SetSelected(){
+        if(jTable1.getSelectedRow() >= 0){
+            String id = jTable1.getValueAt(jTable1.getSelectedRow(), NORMAL).toString();
+            seleccionado = da.getAllotjament(Integer.valueOf(id));
+            txtPropiedadId.setText(String.valueOf(seleccionado.getId()));
+            txtPropiedadDireccion.setText(seleccionado.getAdresa());
+            txtPrecioDia.setText(String.valueOf(seleccionado.getReu_per_nit()));
+            txtPropNombre.setText(seleccionado.getNom());
+            txtDescripcion.setText(seleccionado.getDescripcio());
+        }
     }
 
     /**
@@ -65,14 +80,30 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        txtPropiedadId = new javax.swing.JLabel();
+        txtPropNombre = new javax.swing.JLabel();
+        txtId2 = new javax.swing.JLabel();
+        txtPrecioDia = new javax.swing.JLabel();
+        txtDescripcion = new javax.swing.JLabel();
+        txtPropiedadDireccion = new javax.swing.JLabel();
+        txtDireccion1 = new javax.swing.JLabel();
+        txtNombre1 = new javax.swing.JLabel();
+        txtNombre2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 800, 600));
+        setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
@@ -85,15 +116,6 @@ public class Main extends javax.swing.JFrame {
         jPanel3.add(jLabel1);
         jLabel1.setBounds(590, 10, 200, 50);
 
-        jButton1.setText("Loggin");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton1);
-        jButton1.setBounds(700, 560, 72, 23);
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -105,24 +127,98 @@ public class Main extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel3.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 10, 452, 402);
+        jScrollPane1.setBounds(10, 40, 452, 130);
 
-        getContentPane().add(jPanel3);
-        jPanel3.setBounds(0, 0, 800, 600);
+        jLabel2.setText("Bienvenido");
+        jPanel3.add(jLabel2);
+        jLabel2.setBounds(20, 10, 370, 16);
+
+        jPanel4.setLayout(null);
+
+        txtPropiedadId.setText("0");
+        jPanel4.add(txtPropiedadId);
+        txtPropiedadId.setBounds(40, 30, 50, 16);
+
+        txtPropNombre.setText("Nombre:");
+        jPanel4.add(txtPropNombre);
+        txtPropNombre.setBounds(90, 60, 230, 16);
+
+        txtId2.setText("ID:");
+        jPanel4.add(txtId2);
+        txtId2.setBounds(20, 30, 20, 16);
+
+        txtPrecioDia.setText("0");
+        jPanel4.add(txtPrecioDia);
+        txtPrecioDia.setBounds(70, 90, 40, 16);
+
+        txtDescripcion.setText("Descripcion");
+        txtDescripcion.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        jPanel4.add(txtDescripcion);
+        txtDescripcion.setBounds(20, 140, 420, 100);
+
+        txtPropiedadDireccion.setText("Direccion");
+        jPanel4.add(txtPropiedadDireccion);
+        txtPropiedadDireccion.setBounds(160, 30, 280, 16);
+
+        txtDireccion1.setText("Direccion");
+        jPanel4.add(txtDireccion1);
+        txtDireccion1.setBounds(90, 30, 60, 16);
+
+        txtNombre1.setText("Nombre:");
+        jPanel4.add(txtNombre1);
+        txtNombre1.setBounds(20, 60, 60, 16);
+
+        txtNombre2.setText("Precio:");
+        jPanel4.add(txtNombre2);
+        txtNombre2.setBounds(20, 90, 40, 16);
+
+        jLabel3.setText("FOTOS");
+        jPanel4.add(jLabel3);
+        jLabel3.setBounds(460, 30, 310, 210);
+
+        jPanel3.add(jPanel4);
+        jPanel4.setBounds(0, 260, 800, 260);
+
+        jButton1.setText("Loggin");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton1);
+        jButton1.setBounds(710, 520, 72, 23);
+
+        jTabbedPane1.addTab("tab1", jPanel3);
+        jTabbedPane1.addTab("tab2", jPanel1);
+        jTabbedPane1.addTab("tab3", jPanel2);
+
+        getContentPane().add(jTabbedPane1);
+        jTabbedPane1.setBounds(0, 0, 800, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
         Loggin loggin = new Loggin();
         loggin.setLocationRelativeTo(null);
-        //loggin.setAlwaysOnTop(true);
         loggin.setVisible(true);
-        this.setEnabled(false);
+        loggin.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+       //SetSelected();
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -162,8 +258,23 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel txtDescripcion;
+    private javax.swing.JLabel txtDireccion1;
+    private javax.swing.JLabel txtId2;
+    private javax.swing.JLabel txtNombre1;
+    private javax.swing.JLabel txtNombre2;
+    private javax.swing.JLabel txtPrecioDia;
+    private javax.swing.JLabel txtPropNombre;
+    private javax.swing.JLabel txtPropiedadDireccion;
+    private javax.swing.JLabel txtPropiedadId;
     // End of variables declaration//GEN-END:variables
 }
