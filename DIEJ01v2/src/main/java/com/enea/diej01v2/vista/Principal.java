@@ -80,6 +80,18 @@ public class Principal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         txtUsuario = new javax.swing.JLabel();
         pnlUsuario = new javax.swing.JPanel();
+        txtUsuarioId = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        btnUsuarioGuardar = new javax.swing.JButton();
+        btnUsuarioModificar = new javax.swing.JButton();
+        txtUsuarioPassword = new javax.swing.JTextField();
+        txtUsuarioNombre = new javax.swing.JTextField();
+        txtUsuarioApellido = new javax.swing.JTextField();
+        txtUsuarioEmail = new javax.swing.JTextField();
         pnlLogin = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
@@ -87,9 +99,7 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 204, 255));
-        setMaximumSize(new java.awt.Dimension(1100, 700));
         setMinimumSize(new java.awt.Dimension(1100, 700));
-        setPreferredSize(new java.awt.Dimension(1100, 700));
         setSize(new java.awt.Dimension(1100, 700));
         getContentPane().setLayout(null);
 
@@ -301,18 +311,63 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Principal", pnlBg);
 
+        pnlUsuario.setBackground(new java.awt.Color(255, 255, 255));
         pnlUsuario.setPreferredSize(new java.awt.Dimension(1100, 700));
+        pnlUsuario.setLayout(null);
 
-        javax.swing.GroupLayout pnlUsuarioLayout = new javax.swing.GroupLayout(pnlUsuario);
-        pnlUsuario.setLayout(pnlUsuarioLayout);
-        pnlUsuarioLayout.setHorizontalGroup(
-            pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1100, Short.MAX_VALUE)
-        );
-        pnlUsuarioLayout.setVerticalGroup(
-            pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 669, Short.MAX_VALUE)
-        );
+        txtUsuarioId.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtUsuarioId.setText("id");
+        pnlUsuario.add(txtUsuarioId);
+        txtUsuarioId.setBounds(390, 210, 60, 20);
+
+        jLabel13.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jLabel13.setText("Apellidos:");
+        pnlUsuario.add(jLabel13);
+        jLabel13.setBounds(320, 290, 60, 20);
+
+        jLabel11.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jLabel11.setText("Email:");
+        pnlUsuario.add(jLabel11);
+        jLabel11.setBounds(320, 330, 60, 20);
+
+        jLabel10.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jLabel10.setText("Password:");
+        pnlUsuario.add(jLabel10);
+        jLabel10.setBounds(320, 370, 60, 20);
+
+        jLabel14.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jLabel14.setText("Nombre:");
+        pnlUsuario.add(jLabel14);
+        jLabel14.setBounds(320, 250, 60, 20);
+
+        jLabel15.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jLabel15.setText("ID:");
+        pnlUsuario.add(jLabel15);
+        jLabel15.setBounds(320, 210, 60, 20);
+
+        btnUsuarioGuardar.setText("Guardar");
+        pnlUsuario.add(btnUsuarioGuardar);
+        btnUsuarioGuardar.setBounds(500, 450, 110, 23);
+
+        btnUsuarioModificar.setText("Modificar");
+        pnlUsuario.add(btnUsuarioModificar);
+        btnUsuarioModificar.setBounds(330, 450, 110, 23);
+
+        txtUsuarioPassword.setText("jTextField1");
+        pnlUsuario.add(txtUsuarioPassword);
+        txtUsuarioPassword.setBounds(390, 370, 280, 22);
+
+        txtUsuarioNombre.setText("jTextField1");
+        pnlUsuario.add(txtUsuarioNombre);
+        txtUsuarioNombre.setBounds(390, 250, 280, 22);
+
+        txtUsuarioApellido.setText("jTextField1");
+        pnlUsuario.add(txtUsuarioApellido);
+        txtUsuarioApellido.setBounds(390, 290, 280, 22);
+
+        txtUsuarioEmail.setText("jTextField1");
+        pnlUsuario.add(txtUsuarioEmail);
+        txtUsuarioEmail.setBounds(390, 330, 280, 22);
 
         jTabbedPane1.addTab("Usuario", pnlUsuario);
 
@@ -368,7 +423,14 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JButton btnLogin;
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnNuevo;
+    public javax.swing.JButton btnUsuarioGuardar;
+    public javax.swing.JButton btnUsuarioModificar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -387,7 +449,7 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JPanel pnlLogin;
     public javax.swing.JPanel pnlMain;
     private javax.swing.JPanel pnlMisAlojamientos;
-    private javax.swing.JPanel pnlUsuario;
+    public javax.swing.JPanel pnlUsuario;
     public javax.swing.JTable tblMisAlojamientos;
     public javax.swing.JTextArea txtDescripcion;
     public javax.swing.JTextField txtDireccion;
@@ -397,5 +459,10 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JTextField txtPlazas;
     public javax.swing.JTextField txtPrecio;
     public javax.swing.JLabel txtUsuario;
+    public javax.swing.JTextField txtUsuarioApellido;
+    public javax.swing.JTextField txtUsuarioEmail;
+    public javax.swing.JLabel txtUsuarioId;
+    public javax.swing.JTextField txtUsuarioNombre;
+    public javax.swing.JTextField txtUsuarioPassword;
     // End of variables declaration//GEN-END:variables
 }
