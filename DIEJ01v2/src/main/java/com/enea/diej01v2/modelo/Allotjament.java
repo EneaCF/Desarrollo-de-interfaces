@@ -87,7 +87,7 @@ public class Allotjament {
     }
 
     public void setPreu_per_nit(float preu_per_nit) {
-        this.preu_per_nit = 10.2f;
+        this.preu_per_nit = preu_per_nit;
     }
     
 
