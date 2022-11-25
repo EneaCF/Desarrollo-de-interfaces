@@ -161,6 +161,7 @@ public class DataAcces {
                 + " id_propietari = ?, destacat = ?, preu_per_nit = ?"
                 + " WHERE id = ?";
         try ( Connection connection = getConnection();  PreparedStatement updateStatement = connection.prepareStatement(sql);) {
+            updateStatement.setInt(9, allotjament.getId());
             updateStatement.setString(1, allotjament.getNom());
             updateStatement.setString(2, allotjament.getDescripcio());
             updateStatement.setInt(3, allotjament.getNum_persones());
@@ -169,6 +170,9 @@ public class DataAcces {
             updateStatement.setInt(6, allotjament.getId_propietari());
             updateStatement.setBoolean(7, false);
             updateStatement.setFloat(8, allotjament.getPReu_per_nit());
+            
+            System.out.println(allotjament.getId() + allotjament.getNom() + allotjament.getDescripcio() + allotjament.getNum_persones() + allotjament.getAdresa() 
+            + allotjament.getId_municipi() + allotjament.getId_propietari() + "false" + allotjament.getPReu_per_nit());
             result = updateStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -43,7 +43,7 @@ public class Controlador implements ActionListener{
     public void ListarMisAlojamientos(JTable tabla){
         model = (DefaultTableModel)tabla.getModel();
         
-        List<Allotjament> alojamientos = da.getAllotjaments(4);
+        List<Allotjament> alojamientos = da.getAllotjaments(usuario.getId());
         Object[] objects = new Object[6];
         for(int i=0;i<alojamientos.size();i++){
             objects[0]=alojamientos.get(i).getId();
@@ -115,7 +115,7 @@ public class Controlador implements ActionListener{
     
     public void BotonGuardar(){
         
-        Allotjament allotjament = new Allotjament(0,
+        Allotjament allotjament = new Allotjament(Integer.parseInt(principal.txtId.getText()),
                 principal.txtNombre.getText(),
                 principal.txtDescripcion.getText(),
                 principal.txtDireccion.getText(),
@@ -123,6 +123,7 @@ public class Controlador implements ActionListener{
                 Integer.parseInt(principal.txtPlazas.getText()),
                 Float.parseFloat(principal.txtPrecio.getText()
         ));
+        System.out.println("ENVIAMOS " + allotjament);
         da.updateAllojtament(allotjament);
         //Cambiar esto por la forma correcta 
         principal.tblMisAlojamientos.setVisible(false);
@@ -144,8 +145,12 @@ public class Controlador implements ActionListener{
             if (password.getText().equals(da.findUserPassword(email.getText()))) {
                 System.out.println("Login Correcto");
                 usuario = da.getUser(email.getText());
+                
+                principal.txtUsuario.setText(usuario.getEmail());
+                principal.pnlLogin.setVisible(false);
+                principal.pnlMain.setVisible(true);
             } else {
-                System.out.println("login incorrecto");
+                JOptionPane.showMessageDialog(principal, "Login incorrecto! Intenta de nuevo");
             }
         } else {
             System.out.println("Login cancelado");

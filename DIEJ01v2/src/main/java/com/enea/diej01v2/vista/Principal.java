@@ -6,6 +6,10 @@ package com.enea.diej01v2.vista;
 
 import com.enea.diej01v2.controlador.Controlador;
 import com.enea.diej01v2.modelo.DataAcces;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 
 /**
@@ -18,10 +22,23 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
     public Principal() {
+        try {
+            // Set System L&F
+            UIManager.setLookAndFeel(
+                    UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         initComponents();
-        this.setSize(1200, 800);
+        this.setSize(1100, 700);
         this.setLocationRelativeTo(null);
-        txtNombre.setText("TEST");
     }
     
     /**
@@ -33,6 +50,8 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlMain = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         pnlBg = new javax.swing.JPanel();
         pnlMisAlojamientos = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -59,17 +78,37 @@ public class Principal extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         btnListarAlojamientos = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        txtUsuario = new javax.swing.JLabel();
+        pnlUsuario = new javax.swing.JPanel();
+        pnlLogin = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setSize(new java.awt.Dimension(1200, 800));
+        setBackground(new java.awt.Color(153, 204, 255));
+        setMaximumSize(new java.awt.Dimension(1100, 700));
+        setMinimumSize(new java.awt.Dimension(1100, 700));
+        setPreferredSize(new java.awt.Dimension(1100, 700));
+        setSize(new java.awt.Dimension(1100, 700));
+        getContentPane().setLayout(null);
+
+        pnlMain.setMinimumSize(new java.awt.Dimension(1100, 700));
+        pnlMain.setPreferredSize(new java.awt.Dimension(1100, 700));
+        pnlMain.setLayout(null);
+
+        jTabbedPane1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jTabbedPane1.setMaximumSize(new java.awt.Dimension(1100, 700));
+        jTabbedPane1.setMinimumSize(new java.awt.Dimension(1100, 700));
 
         pnlBg.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBg.setMinimumSize(new java.awt.Dimension(1100, 700));
         pnlBg.setLayout(null);
 
         pnlMisAlojamientos.setBackground(new java.awt.Color(255, 255, 255));
         pnlMisAlojamientos.setBorder(javax.swing.BorderFactory.createTitledBorder("Mis alojamientos:"));
 
+        tblMisAlojamientos.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         tblMisAlojamientos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -107,7 +146,7 @@ public class Principal extends javax.swing.JFrame {
         );
 
         pnlBg.add(pnlMisAlojamientos);
-        pnlMisAlojamientos.setBounds(20, 90, 550, 290);
+        pnlMisAlojamientos.setBounds(10, 90, 550, 290);
 
         pnlFotos.setBorder(javax.swing.BorderFactory.createTitledBorder("Fotos"));
 
@@ -123,40 +162,52 @@ public class Principal extends javax.swing.JFrame {
         );
 
         pnlBg.add(pnlFotos);
-        pnlFotos.setBounds(20, 390, 550, 230);
+        pnlFotos.setBounds(10, 390, 550, 230);
 
         pnlDatos.setBackground(new java.awt.Color(255, 255, 255));
         pnlDatos.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
         pnlDatos.setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel1.setText("ID:");
         pnlDatos.add(jLabel1);
         jLabel1.setBounds(30, 30, 30, 20);
 
+        txtId.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtId.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         txtId.setEnabled(false);
         pnlDatos.add(txtId);
-        txtId.setBounds(60, 30, 64, 22);
+        txtId.setBounds(60, 30, 64, 21);
 
+        jLabel2.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel2.setText("Nombre:");
         pnlDatos.add(jLabel2);
         jLabel2.setBounds(150, 30, 50, 20);
 
+        txtNombre.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtNombre.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         txtNombre.setEnabled(false);
         pnlDatos.add(txtNombre);
-        txtNombre.setBounds(210, 30, 260, 22);
+        txtNombre.setBounds(210, 30, 260, 21);
 
+        jLabel3.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel3.setText("Dirección:");
         pnlDatos.add(jLabel3);
         jLabel3.setBounds(30, 70, 60, 20);
 
+        txtDireccion.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtDireccion.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         txtDireccion.setEnabled(false);
         pnlDatos.add(txtDireccion);
-        txtDireccion.setBounds(100, 70, 370, 22);
+        txtDireccion.setBounds(100, 70, 370, 21);
 
+        jLabel4.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel4.setText("Descripcion:");
         pnlDatos.add(jLabel4);
         jLabel4.setBounds(30, 150, 90, 20);
 
+        txtMunicipio.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtMunicipio.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         txtMunicipio.setEnabled(false);
         txtMunicipio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,55 +215,68 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         pnlDatos.add(txtMunicipio);
-        txtMunicipio.setBounds(100, 110, 370, 22);
+        txtMunicipio.setBounds(100, 110, 370, 21);
 
+        jLabel5.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel5.setText("Municipio:");
         pnlDatos.add(jLabel5);
         jLabel5.setBounds(30, 110, 60, 20);
 
         txtDescripcion.setColumns(20);
+        txtDescripcion.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtDescripcion.setLineWrap(true);
         txtDescripcion.setRows(5);
+        txtDescripcion.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         txtDescripcion.setEnabled(false);
         jScrollPane2.setViewportView(txtDescripcion);
 
         pnlDatos.add(jScrollPane2);
-        jScrollPane2.setBounds(30, 180, 440, 86);
+        jScrollPane2.setBounds(30, 180, 440, 81);
 
+        jLabel6.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel6.setText("Plazas:");
         pnlDatos.add(jLabel6);
         jLabel6.setBounds(30, 290, 40, 20);
 
+        txtPlazas.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtPlazas.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         txtPlazas.setEnabled(false);
         pnlDatos.add(txtPlazas);
-        txtPlazas.setBounds(80, 290, 71, 22);
+        txtPlazas.setBounds(80, 290, 71, 21);
 
+        jLabel7.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel7.setText("Precio por noche:");
         pnlDatos.add(jLabel7);
         jLabel7.setBounds(170, 290, 100, 20);
 
+        txtPrecio.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtPrecio.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         txtPrecio.setEnabled(false);
         pnlDatos.add(txtPrecio);
-        txtPrecio.setBounds(280, 290, 71, 22);
+        txtPrecio.setBounds(280, 290, 71, 21);
 
+        btnNuevo.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         btnNuevo.setText("Nuevo");
         pnlDatos.add(btnNuevo);
-        btnNuevo.setBounds(20, 360, 90, 23);
+        btnNuevo.setBounds(20, 360, 90, 22);
 
+        btnGuardar.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.setEnabled(false);
         pnlDatos.add(btnGuardar);
-        btnGuardar.setBounds(380, 360, 90, 23);
+        btnGuardar.setBounds(380, 360, 90, 22);
 
+        btnModificar.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         btnModificar.setText("Modificar");
         pnlDatos.add(btnModificar);
-        btnModificar.setBounds(120, 360, 90, 23);
+        btnModificar.setBounds(120, 360, 90, 22);
 
         pnlBg.add(pnlDatos);
-        pnlDatos.setBounds(590, 40, 490, 400);
+        pnlDatos.setBounds(580, 40, 490, 400);
 
         btnListarAlojamientos.setText("Listar");
         pnlBg.add(btnListarAlojamientos);
-        btnListarAlojamientos.setBounds(30, 60, 160, 23);
+        btnListarAlojamientos.setBounds(400, 60, 160, 23);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Comentarios"));
@@ -229,22 +293,55 @@ public class Principal extends javax.swing.JFrame {
         );
 
         pnlBg.add(jPanel1);
-        jPanel1.setBounds(590, 450, 490, 170);
+        jPanel1.setBounds(580, 450, 490, 170);
 
-        btnLogin.setText("Login");
-        pnlBg.add(btnLogin);
-        btnLogin.setBounds(260, 60, 130, 23);
+        txtUsuario.setText("jLabel10");
+        pnlBg.add(txtUsuario);
+        txtUsuario.setBounds(30, 30, 210, 16);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBg, javax.swing.GroupLayout.DEFAULT_SIZE, 1094, Short.MAX_VALUE)
+        jTabbedPane1.addTab("Principal", pnlBg);
+
+        pnlUsuario.setPreferredSize(new java.awt.Dimension(1100, 700));
+
+        javax.swing.GroupLayout pnlUsuarioLayout = new javax.swing.GroupLayout(pnlUsuario);
+        pnlUsuario.setLayout(pnlUsuarioLayout);
+        pnlUsuarioLayout.setHorizontalGroup(
+            pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1100, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBg, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
+        pnlUsuarioLayout.setVerticalGroup(
+            pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 669, Short.MAX_VALUE)
         );
+
+        jTabbedPane1.addTab("Usuario", pnlUsuario);
+
+        pnlMain.add(jTabbedPane1);
+        jTabbedPane1.setBounds(0, 0, 1100, 700);
+
+        getContentPane().add(pnlMain);
+        pnlMain.setBounds(0, 0, 1200, 800);
+
+        pnlLogin.setBackground(new java.awt.Color(255, 255, 255));
+        pnlLogin.setMinimumSize(new java.awt.Dimension(1100, 700));
+        pnlLogin.setPreferredSize(new java.awt.Dimension(1100, 700));
+        pnlLogin.setLayout(null);
+
+        jLabel8.setFont(new java.awt.Font("Roboto Light", 1, 48)); // NOI18N
+        jLabel8.setText("INICIO DE SESIÓN");
+        pnlLogin.add(jLabel8);
+        jLabel8.setBounds(332, 62, 430, 65);
+
+        btnLogin.setText("ENTRAR");
+        pnlLogin.add(btnLogin);
+        btnLogin.setBounds(500, 520, 75, 23);
+
+        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\Enea\\Documents\\Desarrollo de interfaces\\DIEJ01v2\\src\\main\\java\\com\\enea\\diej01v2\\img\\logos-villaonline1.png")); // NOI18N
+        pnlLogin.add(jLabel9);
+        jLabel9.setBounds(230, 140, 610, 350);
+
+        getContentPane().add(pnlLogin);
+        pnlLogin.setBounds(0, 0, 1100, 700);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -261,6 +358,7 @@ public class Principal extends javax.swing.JFrame {
         Controlador controlador = new Controlador(principal);
         principal.setVisible(true);
         principal.setLocationRelativeTo(null);
+        principal.pnlMain.setVisible(false);
         
     }
 
@@ -277,13 +375,19 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel pnlBg;
     private javax.swing.JPanel pnlDatos;
     private javax.swing.JPanel pnlFotos;
+    public javax.swing.JPanel pnlLogin;
+    public javax.swing.JPanel pnlMain;
     private javax.swing.JPanel pnlMisAlojamientos;
+    private javax.swing.JPanel pnlUsuario;
     public javax.swing.JTable tblMisAlojamientos;
     public javax.swing.JTextArea txtDescripcion;
     public javax.swing.JTextField txtDireccion;
@@ -292,5 +396,6 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JTextField txtNombre;
     public javax.swing.JTextField txtPlazas;
     public javax.swing.JTextField txtPrecio;
+    public javax.swing.JLabel txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
