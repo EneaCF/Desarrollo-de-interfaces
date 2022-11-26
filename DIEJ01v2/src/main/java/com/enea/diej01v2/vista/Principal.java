@@ -76,9 +76,13 @@ public class Principal extends javax.swing.JFrame {
         btnNuevo = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
-        btnListarAlojamientos = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtComentarios = new javax.swing.JTextArea();
+        pnlUsuLog = new javax.swing.JPanel();
         txtUsuario = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        btnSalir = new javax.swing.JButton();
         pnlUsuario = new javax.swing.JPanel();
         txtUsuarioId = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -156,8 +160,9 @@ public class Principal extends javax.swing.JFrame {
         );
 
         pnlBg.add(pnlMisAlojamientos);
-        pnlMisAlojamientos.setBounds(10, 90, 550, 290);
+        pnlMisAlojamientos.setBounds(20, 90, 550, 290);
 
+        pnlFotos.setBackground(new java.awt.Color(255, 255, 255));
         pnlFotos.setBorder(javax.swing.BorderFactory.createTitledBorder("Fotos"));
 
         javax.swing.GroupLayout pnlFotosLayout = new javax.swing.GroupLayout(pnlFotos);
@@ -172,7 +177,7 @@ public class Principal extends javax.swing.JFrame {
         );
 
         pnlBg.add(pnlFotos);
-        pnlFotos.setBounds(10, 390, 550, 230);
+        pnlFotos.setBounds(20, 390, 550, 230);
 
         pnlDatos.setBackground(new java.awt.Color(255, 255, 255));
         pnlDatos.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
@@ -236,12 +241,15 @@ public class Principal extends javax.swing.JFrame {
         txtDescripcion.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtDescripcion.setLineWrap(true);
         txtDescripcion.setRows(5);
+        txtDescripcion.setAutoscrolls(false);
+        txtDescripcion.setBorder(null);
         txtDescripcion.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         txtDescripcion.setEnabled(false);
+        txtDescripcion.setSelectedTextColor(new java.awt.Color(242, 242, 242));
         jScrollPane2.setViewportView(txtDescripcion);
 
         pnlDatos.add(jScrollPane2);
-        jScrollPane2.setBounds(30, 180, 440, 81);
+        jScrollPane2.setBounds(30, 180, 440, 77);
 
         jLabel6.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel6.setText("Plazas:");
@@ -284,30 +292,54 @@ public class Principal extends javax.swing.JFrame {
         pnlBg.add(pnlDatos);
         pnlDatos.setBounds(580, 40, 490, 400);
 
-        btnListarAlojamientos.setText("Listar");
-        pnlBg.add(btnListarAlojamientos);
-        btnListarAlojamientos.setBounds(400, 60, 160, 23);
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Comentarios"));
+
+        txtComentarios.setColumns(20);
+        txtComentarios.setRows(5);
+        jScrollPane3.setViewportView(txtComentarios);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 147, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pnlBg.add(jPanel1);
         jPanel1.setBounds(580, 450, 490, 170);
 
+        pnlUsuLog.setBackground(new java.awt.Color(255, 255, 255));
+        pnlUsuLog.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bienvenido: ", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        pnlUsuLog.setPreferredSize(new java.awt.Dimension(250, 70));
+        pnlUsuLog.setLayout(null);
+
+        txtUsuario.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        txtUsuario.setForeground(new java.awt.Color(0, 0, 255));
         txtUsuario.setText("jLabel10");
-        pnlBg.add(txtUsuario);
-        txtUsuario.setBounds(30, 30, 210, 16);
+        pnlUsuLog.add(txtUsuario);
+        txtUsuario.setBounds(90, 30, 310, 22);
+
+        jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\Enea\\Documents\\Desarrollo de interfaces\\DIEJ01v2\\src\\main\\java\\com\\enea\\diej01v2\\img\\baseline_person_black_24dp.png")); // NOI18N
+        pnlUsuLog.add(jLabel16);
+        jLabel16.setBounds(20, 10, 50, 60);
+
+        btnSalir.setText("Salir");
+        pnlUsuLog.add(btnSalir);
+        btnSalir.setBounds(450, 30, 72, 23);
+
+        pnlBg.add(pnlUsuLog);
+        pnlUsuLog.setBounds(20, 10, 550, 70);
 
         jTabbedPane1.addTab("Principal", pnlBg);
 
@@ -419,10 +451,10 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnGuardar;
-    public javax.swing.JButton btnListarAlojamientos;
     public javax.swing.JButton btnLogin;
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnNuevo;
+    public javax.swing.JButton btnSalir;
     public javax.swing.JButton btnUsuarioGuardar;
     public javax.swing.JButton btnUsuarioModificar;
     private javax.swing.JLabel jLabel1;
@@ -431,6 +463,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -442,6 +475,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel pnlBg;
     private javax.swing.JPanel pnlDatos;
@@ -449,8 +483,10 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JPanel pnlLogin;
     public javax.swing.JPanel pnlMain;
     private javax.swing.JPanel pnlMisAlojamientos;
+    private javax.swing.JPanel pnlUsuLog;
     public javax.swing.JPanel pnlUsuario;
     public javax.swing.JTable tblMisAlojamientos;
+    private javax.swing.JTextArea txtComentarios;
     public javax.swing.JTextArea txtDescripcion;
     public javax.swing.JTextField txtDireccion;
     public javax.swing.JTextField txtId;

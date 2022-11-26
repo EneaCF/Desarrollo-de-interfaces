@@ -32,13 +32,13 @@ public class Controlador implements ActionListener{
 
     public Controlador(Principal p) {
         this.principal = p;
-        this.principal.btnListarAlojamientos.addActionListener(this);
         this.principal.btnNuevo.addActionListener(this);
         this.principal.btnGuardar.addActionListener(this);
         this.principal.btnModificar.addActionListener(this);
         this.principal.btnLogin.addActionListener(this);
         this.principal.btnUsuarioModificar.addActionListener(this);
         this.principal.btnUsuarioGuardar.addActionListener(this);
+        this.principal.btnSalir.addActionListener(this);
     }
     
     public void CargarDatosUsuario(){
@@ -215,13 +215,20 @@ public class Controlador implements ActionListener{
             System.out.println("Login cancelado");
         }
     }
+    
+    public void Logout(){
+        Usuari u = new Usuari();
+        usuario = u;
+        principal.pnlLogin.setVisible(true);
+        principal.pnlMain.setVisible(false);
+    }
   
     //List<Allotjament> alojamientos = da.getAllotjaments(4);
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==principal.btnListarAlojamientos) {
-            ListarMisAlojamientos(principal.tblMisAlojamientos);
-        }
+//        if (e.getSource()==principal.btnListarAlojamientos) {
+//            ListarMisAlojamientos(principal.tblMisAlojamientos);
+//        }
         if(e.getSource()==principal.btnModificar){
             BotonModificar();
         }
@@ -230,6 +237,7 @@ public class Controlador implements ActionListener{
         }
         if(e.getSource()==principal.btnGuardar){
             BotonGuardar();
+            ListarMisAlojamientos(principal.tblMisAlojamientos);
         }
         if(e.getSource()==principal.btnLogin){
             Login();
@@ -239,6 +247,9 @@ public class Controlador implements ActionListener{
         }
         if(e.getSource()==principal.btnUsuarioGuardar){
             BotonGuardarUsuario();
+        }
+        if(e.getSource()==principal.btnSalir){
+            Logout();
         }
     }
 }
