@@ -4,19 +4,18 @@ import com.enea.diej01v2.controlador.Controlador;
 import com.enea.diej01v2.modelo.DataAcces;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
-
 /**
  *
  * @author Enea
  */
 public class Principal extends javax.swing.JFrame {
     public DataAcces da;
-   
-    
-    
+
     /**
      * Creates new form Principal
      */
@@ -37,8 +36,30 @@ public class Principal extends javax.swing.JFrame {
         }
         
         initComponents();
+        
+        iconoUsuario.setIcon(CargarImagenes("baseline_person_black_24dp"));
+        iconoLogo.setIcon(CargarImagenes("logos-villaonline1"));
+        
         this.setSize(1100, 700);
         this.setLocationRelativeTo(null);
+    }
+    
+    //Solucion para aplicar rutas relativas a imagenes
+    public Icon CargarImagenes(String img){
+        Icon icon = new ImageIcon();
+        try {
+            String userDir = System.getProperty("user.dir");
+            String fileSeparator = System.getProperty("file.separator");
+            String rutaimagen= userDir + fileSeparator + "src" + fileSeparator + "main" + fileSeparator + "java" + fileSeparator + "com" + fileSeparator + 
+                "enea" + fileSeparator + "diej01v2" + fileSeparator + "img" +  fileSeparator +
+                img +".png";
+            Icon iconOK = new ImageIcon(rutaimagen);
+            return iconOK;
+            
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(this, "Error al cargar img");
+             return icon;
+        }
     }
     
     /**
@@ -76,12 +97,19 @@ public class Principal extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
+        pnlServicios = new javax.swing.JPanel();
+        txtServicio1 = new javax.swing.JLabel();
+        txtServicio2 = new javax.swing.JLabel();
+        txtServicio4 = new javax.swing.JLabel();
+        txtServicio3 = new javax.swing.JLabel();
+        txtServicio6 = new javax.swing.JLabel();
+        txtServicio5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtComentarios = new javax.swing.JTextArea();
         pnlUsuLog = new javax.swing.JPanel();
         txtUsuario = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        iconoUsuario = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         pnlUsuario = new javax.swing.JPanel();
         txtUsuarioId = new javax.swing.JLabel();
@@ -99,7 +127,7 @@ public class Principal extends javax.swing.JFrame {
         pnlLogin = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
+        iconoLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 204, 255));
@@ -122,6 +150,9 @@ public class Principal extends javax.swing.JFrame {
         pnlMisAlojamientos.setBackground(new java.awt.Color(255, 255, 255));
         pnlMisAlojamientos.setBorder(javax.swing.BorderFactory.createTitledBorder("Mis alojamientos:"));
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         tblMisAlojamientos.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         tblMisAlojamientos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -139,6 +170,7 @@ public class Principal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblMisAlojamientos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tblMisAlojamientos.setGridColor(new java.awt.Color(255, 255, 255));
         tblMisAlojamientos.setSelectionBackground(new java.awt.Color(0, 153, 255));
         jScrollPane1.setViewportView(tblMisAlojamientos);
@@ -277,20 +309,43 @@ public class Principal extends javax.swing.JFrame {
         btnGuardar.setText("Guardar");
         btnGuardar.setEnabled(false);
         pnlDatos.add(btnGuardar);
-        btnGuardar.setBounds(380, 360, 90, 22);
+        btnGuardar.setBounds(380, 380, 90, 22);
 
         btnModificar.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         btnModificar.setText("Modificar");
         pnlDatos.add(btnModificar);
-        btnModificar.setBounds(120, 360, 90, 22);
+        btnModificar.setBounds(120, 380, 90, 22);
 
         btnNuevo.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         btnNuevo.setText("Nuevo");
         pnlDatos.add(btnNuevo);
-        btnNuevo.setBounds(20, 360, 90, 22);
+        btnNuevo.setBounds(20, 380, 90, 22);
+
+        pnlServicios.setBackground(new java.awt.Color(255, 255, 255));
+        pnlServicios.setLayout(null);
+        pnlServicios.add(txtServicio1);
+        txtServicio1.setBounds(50, 0, 40, 40);
+
+        txtServicio2.setMaximumSize(new java.awt.Dimension(40, 40));
+        txtServicio2.setMinimumSize(new java.awt.Dimension(40, 40));
+        pnlServicios.add(txtServicio2);
+        txtServicio2.setBounds(110, 0, 40, 40);
+        pnlServicios.add(txtServicio4);
+        txtServicio4.setBounds(230, 0, 40, 40);
+
+        txtServicio3.setPreferredSize(new java.awt.Dimension(40, 40));
+        pnlServicios.add(txtServicio3);
+        txtServicio3.setBounds(170, 0, 40, 40);
+        pnlServicios.add(txtServicio6);
+        txtServicio6.setBounds(350, 0, 40, 40);
+        pnlServicios.add(txtServicio5);
+        txtServicio5.setBounds(290, 0, 40, 40);
+
+        pnlDatos.add(pnlServicios);
+        pnlServicios.setBounds(30, 330, 440, 40);
 
         pnlBg.add(pnlDatos);
-        pnlDatos.setBounds(580, 40, 490, 400);
+        pnlDatos.setBounds(580, 20, 490, 420);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Comentarios"));
@@ -332,9 +387,9 @@ public class Principal extends javax.swing.JFrame {
         pnlUsuLog.add(txtUsuario);
         txtUsuario.setBounds(90, 30, 330, 22);
 
-        jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\Enea\\Documents\\Desarrollo de interfaces\\DIEJ01v2\\src\\main\\java\\com\\enea\\diej01v2\\img\\baseline_person_black_24dp.png")); // NOI18N
-        pnlUsuLog.add(jLabel16);
-        jLabel16.setBounds(20, 10, 50, 60);
+        iconoUsuario.setText("img Usuario");
+        pnlUsuLog.add(iconoUsuario);
+        iconoUsuario.setBounds(20, 10, 50, 60);
 
         jButton1.setText("Salir");
         pnlUsuLog.add(jButton1);
@@ -424,10 +479,8 @@ public class Principal extends javax.swing.JFrame {
         btnLogin.setText("ENTRAR");
         pnlLogin.add(btnLogin);
         btnLogin.setBounds(500, 520, 75, 23);
-
-        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\Enea\\Documents\\Desarrollo de interfaces\\DIEJ01v2\\src\\main\\java\\com\\enea\\diej01v2\\img\\logos-villaonline1.png")); // NOI18N
-        pnlLogin.add(jLabel9);
-        jLabel9.setBounds(230, 140, 610, 350);
+        pnlLogin.add(iconoLogo);
+        iconoLogo.setBounds(230, 140, 610, 350);
 
         getContentPane().add(pnlLogin);
         pnlLogin.setBounds(0, 0, 1100, 700);
@@ -439,9 +492,6 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMunicipioActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         Principal principal = new Principal();
         Controlador controlador = new Controlador(principal);
@@ -450,7 +500,6 @@ public class Principal extends javax.swing.JFrame {
         principal.pnlMain.setVisible(false);
         
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnLogin;
@@ -458,6 +507,8 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JButton btnNuevo;
     public javax.swing.JButton btnUsuarioGuardar;
     public javax.swing.JButton btnUsuarioModificar;
+    private javax.swing.JLabel iconoLogo;
+    private javax.swing.JLabel iconoUsuario;
     public javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -465,7 +516,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -473,9 +523,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     public javax.swing.JTabbedPane jTabbedPane1;
@@ -485,6 +534,7 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JPanel pnlLogin;
     public javax.swing.JPanel pnlMain;
     private javax.swing.JPanel pnlMisAlojamientos;
+    public javax.swing.JPanel pnlServicios;
     public javax.swing.JPanel pnlUsuLog;
     public javax.swing.JPanel pnlUsuario;
     public javax.swing.JTable tblMisAlojamientos;
@@ -496,6 +546,12 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JTextField txtNombre;
     public javax.swing.JTextField txtPlazas;
     public javax.swing.JTextField txtPrecio;
+    public javax.swing.JLabel txtServicio1;
+    public javax.swing.JLabel txtServicio2;
+    public javax.swing.JLabel txtServicio3;
+    public javax.swing.JLabel txtServicio4;
+    public javax.swing.JLabel txtServicio5;
+    public javax.swing.JLabel txtServicio6;
     public javax.swing.JLabel txtUsuario;
     public javax.swing.JTextField txtUsuarioApellido;
     public javax.swing.JTextField txtUsuarioEmail;

@@ -5,7 +5,10 @@ import com.enea.diej01v2.modelo.Comentari;
 import com.enea.diej01v2.modelo.DataAcces;
 import com.enea.diej01v2.modelo.Municipi;
 import com.enea.diej01v2.modelo.Usuari;
+import com.enea.diej01v2.modelo.Servei;
 import com.enea.diej01v2.vista.Principal;
+import com.sun.security.auth.NTSidPrimaryGroupPrincipal;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -62,12 +65,14 @@ public class Controlador implements ActionListener{
             objects[3]=alojamientos.get(i).getMunicipi();
             model.addRow(objects);
         }
-        
         principal.tblMisAlojamientos.setModel(model);
 
         principal.tblMisAlojamientos.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
             @Override
             public void valueChanged(ListSelectionEvent event) {
+                //principal.txtServicio4.setVisible(false);
+                //principal.pnlServicios.setVisible(false);
+                
                 principal.txtComentarios.setText("");
                 if (principal.tblMisAlojamientos.getSelectedRow() > -1) {
                     int auxId = (int) principal.tblMisAlojamientos.getValueAt(principal.tblMisAlojamientos.getSelectedRow(), 0);
@@ -81,9 +86,86 @@ public class Controlador implements ActionListener{
                     principal.txtPlazas.setText(String.valueOf(allotjamentSel.getNum_persones()));
                     
                     CargarComentarios(allotjamentSel.getId());
+                    CargarServicios(allotjamentSel.getId());
                 }
             }
         });     
+    }
+    public void VisibleServicios(String nServicio,int posicion){
+        switch (posicion) {
+            case 1:
+                principal.txtServicio1.setIcon(principal.CargarImagenes(nServicio));
+                principal.txtServicio1.setVisible(true);
+                break;
+            case 2:
+                principal.txtServicio2.setIcon(principal.CargarImagenes(nServicio));
+                principal.txtServicio2.setVisible(true);
+                break;
+            case 3:
+                principal.txtServicio3.setIcon(principal.CargarImagenes(nServicio));
+                principal.txtServicio3.setVisible(true);
+                break;
+            case 4:
+                principal.txtServicio4.setIcon(principal.CargarImagenes(nServicio));
+                principal.txtServicio4.setVisible(true);
+                break;
+            case 5:
+                principal.txtServicio5.setIcon(principal.CargarImagenes(nServicio));
+                principal.txtServicio5.setVisible(true);
+                break;
+            case 6:
+                principal.txtServicio6.setIcon(principal.CargarImagenes(nServicio));
+                principal.txtServicio6.setVisible(true);
+                break;
+            default:
+                principal.txtServicio1.setVisible(false);
+                principal.txtServicio2.setVisible(false);
+                principal.txtServicio3.setVisible(false);
+                principal.txtServicio4.setVisible(false);
+                principal.txtServicio5.setVisible(false);
+                principal.txtServicio6.setVisible(false);
+                break;
+        }
+    }
+    
+    public void CargarServicios(int idAlojamiento){
+        List<Servei> servicios = da.getServeisAllotjament(idAlojamiento);
+        int aux = 1;
+        if (servicios.isEmpty()) {
+            VisibleServicios("asd", 0);
+        }else{
+            for(Servei s : servicios){
+            switch (s.getId()) {
+                case 1:
+                    VisibleServicios("piscina", aux);
+                    aux++;
+                    break;
+                case 2:
+                    VisibleServicios("mascotas", aux);
+                    aux++;
+                    break;
+                case 3:
+                    VisibleServicios("aire", aux);
+                    aux++;
+                    break;
+                case 4:
+                    VisibleServicios("ascensor", aux);
+                    aux++;
+                    break;
+                case 5:
+                    VisibleServicios("aparcamiento", aux);
+                    aux++;
+                    break;
+                case 6:
+                    VisibleServicios("wifi", aux);
+                    aux++;
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
+        
     }
     public void AbilitarTextBoxUsuario(boolean b){
         if(b){
@@ -208,7 +290,7 @@ public class Controlador implements ActionListener{
             aux = principal.txtComentarios.getText() + "Id: " + c.getId() + 
                 " id usaurio: " + c.getIdUsuari() + "\n" + c.getText();
         }
-        principal.txtComentarios.setText("\n" + aux);
+        principal.txtComentarios.setText(aux + "\n");
     }
     
     public void Login(){
@@ -223,7 +305,6 @@ public class Controlador implements ActionListener{
             if (password.getText().equals(da.findUserPassword(email.getText()))) {
                 System.out.println("Login Correcto");
                 usuario = da.getUser(email.getText());
-                
                 principal.txtUsuario.setText(usuario.getEmail());
                 principal.pnlLogin.setVisible(false);
                 principal.pnlMain.setVisible(true);

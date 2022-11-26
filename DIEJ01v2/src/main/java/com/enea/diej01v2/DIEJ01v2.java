@@ -5,6 +5,8 @@
 
 package com.enea.diej01v2;
 
+import com.enea.diej01v2.vista.Principal;
+
 /**
  *
  * @author Enea
@@ -12,6 +14,7 @@ package com.enea.diej01v2;
 public class DIEJ01v2 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Principal p = new Principal();
+        p.setVisible(true);
     }
 }
