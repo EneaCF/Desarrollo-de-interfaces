@@ -295,7 +295,9 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Comentarios"));
 
+        txtComentarios.setEditable(false);
         txtComentarios.setColumns(20);
+        txtComentarios.setLineWrap(true);
         txtComentarios.setRows(5);
         jScrollPane3.setViewportView(txtComentarios);
 

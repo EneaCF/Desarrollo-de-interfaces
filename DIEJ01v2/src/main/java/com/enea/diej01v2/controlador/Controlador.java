@@ -206,9 +206,9 @@ public class Controlador implements ActionListener{
         String aux = "";
         for(Comentari c : comentarios){
             aux = principal.txtComentarios.getText() + "Id: " + c.getId() + 
-                "id usaurio: " + c.getIdUsuari() + "\n" + c.getText() + "\n";
+                " id usaurio: " + c.getIdUsuari() + "\n" + c.getText();
         }
-        principal.txtComentarios.setText(aux);
+        principal.txtComentarios.setText("\n" + aux);
     }
     
     public void Login(){
