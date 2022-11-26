@@ -37,6 +37,8 @@ public class Controlador implements ActionListener{
         this.principal.btnGuardar.addActionListener(this);
         this.principal.btnModificar.addActionListener(this);
         this.principal.btnLogin.addActionListener(this);
+        this.principal.btnUsuarioModificar.addActionListener(this);
+        this.principal.btnUsuarioGuardar.addActionListener(this);
     }
     
     public void CargarDatosUsuario(){
@@ -89,6 +91,43 @@ public class Controlador implements ActionListener{
             }
         });     
     }
+    public void AbilitarTextBoxUsuario(boolean b){
+        if(b){
+            principal.txtUsuarioNombre.setEnabled(true);
+            principal.txtUsuarioApellido.setEnabled(true);
+            principal.txtUsuarioEmail.setEnabled(true);
+            principal.txtUsuarioPassword.setEnabled(true);
+            
+        }else{
+            principal.txtUsuarioNombre.setEnabled(false);
+            principal.txtUsuarioApellido.setEnabled(false);
+            principal.txtUsuarioEmail.setEnabled(false);
+            principal.txtUsuarioPassword.setEnabled(false); 
+        }
+    }
+        
+    public void BotonModificarUsuario(){
+        if(!principal.txtUsuarioNombre.isEnabled()){
+            AbilitarTextBoxUsuario(true);
+        }else{
+            AbilitarTextBoxUsuario(false);
+        }
+        principal.btnUsuarioGuardar.setEnabled(true);
+    }
+    
+    public void BotonGuardarUsuario(){
+        Usuari u = new Usuari(usuario.getId(), principal.txtUsuarioNombre.getText(), 
+                principal.txtUsuarioApellido.getText(), 
+                principal.txtUsuarioEmail.getText(),
+                principal.txtUsuarioPassword.getText(),
+                Boolean.TRUE);
+        
+        da.updateUsuari(u);
+        AbilitarTextBoxUsuario(false);
+        principal.btnUsuarioGuardar.setEnabled(false);
+       
+    }
+    
     public void AbilitarTextBoxDatos(boolean b){
         if(b){
             //principal.txtId.setEnabled(true);
@@ -142,14 +181,12 @@ public class Controlador implements ActionListener{
                 Integer.parseInt(principal.txtPlazas.getText()),
                 Float.parseFloat(principal.txtPrecio.getText()
         ));
-        //System.out.println("ENVIAMOS " + allotjament);
         da.updateAllojtament(allotjament);
         //Cambiar esto por la forma correcta 
         principal.tblMisAlojamientos.setVisible(false);
         principal.tblMisAlojamientos.setVisible(true);
         principal.btnGuardar.setEnabled(false);
-        AbilitarTextBoxDatos(false);
-        
+        AbilitarTextBoxDatos(false);  
     }
     
     public void Login(){
@@ -185,17 +222,23 @@ public class Controlador implements ActionListener{
         if (e.getSource()==principal.btnListarAlojamientos) {
             ListarMisAlojamientos(principal.tblMisAlojamientos);
         }
-        else if(e.getSource()==principal.btnModificar){
+        if(e.getSource()==principal.btnModificar){
             BotonModificar();
         }
-        else if(e.getSource()==principal.btnNuevo){
+        if(e.getSource()==principal.btnNuevo){
             BotonNuevo();
         }
-        else if(e.getSource()==principal.btnGuardar){
+        if(e.getSource()==principal.btnGuardar){
             BotonGuardar();
         }
         if(e.getSource()==principal.btnLogin){
             Login();
+        }
+        if(e.getSource()==principal.btnUsuarioModificar){
+            BotonModificarUsuario();
+        }
+        if(e.getSource()==principal.btnUsuarioGuardar){
+            BotonGuardarUsuario();
         }
     }
 }
