@@ -1,6 +1,7 @@
 package com.enea.diej01v2.controlador;
 
 import com.enea.diej01v2.modelo.Allotjament;
+import com.enea.diej01v2.modelo.Comentari;
 import com.enea.diej01v2.modelo.DataAcces;
 import com.enea.diej01v2.modelo.Municipi;
 import com.enea.diej01v2.modelo.Usuari;
@@ -67,6 +68,7 @@ public class Controlador implements ActionListener{
         principal.tblMisAlojamientos.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
             @Override
             public void valueChanged(ListSelectionEvent event) {
+                principal.txtComentarios.setText("");
                 if (principal.tblMisAlojamientos.getSelectedRow() > -1) {
                     int auxId = (int) principal.tblMisAlojamientos.getValueAt(principal.tblMisAlojamientos.getSelectedRow(), 0);
                     allotjamentSel = da.getAllotjament(auxId);
@@ -77,6 +79,8 @@ public class Controlador implements ActionListener{
                     principal.txtDescripcion.setText(allotjamentSel.getDescripcio());
                     principal.txtPrecio.setText(String.valueOf(allotjamentSel.getPReu_per_nit()));
                     principal.txtPlazas.setText(String.valueOf(allotjamentSel.getNum_persones()));
+                    
+                    CargarComentarios(allotjamentSel.getId());
                 }
             }
         });     
@@ -188,34 +192,23 @@ public class Controlador implements ActionListener{
             da.insertAllotjament(allotjament);
         }else{
             da.updateAllojtament(allotjament);
-        }
-                
-                
-//        Allotjament a = new Allotjament();
-//        if (Integer.parseInt(principal.txtId.getText())==0) {
-//            a.setNom(principal.txtNombre.getText());
-//            a.setDescripcio(principal.txtDescripcion.getText());
-//            a.setAdresa(principal.txtDireccion.getText());
-//            a.setMunicipi(String.valueOf(aux));
-//            a.setNum_persones(Integer.parseInt(principal.txtPlazas.getText()));
-//            a.setPreu_per_nit(Float.parseFloat(principal.txtPrecio.getText()));
-//            da.insertAllotjament(a);
-//        }else{
-//            a.setId(Integer.parseInt(principal.txtId.getText()));
-//            a.setNom(principal.txtNombre.getText());
-//            a.setDescripcio(principal.txtDescripcion.getText());
-//            a.setAdresa(principal.txtDireccion.getText());
-//            a.setMunicipi(String.valueOf(aux));
-//            a.setNum_persones(Integer.parseInt(principal.txtPlazas.getText()));
-//            a.setPreu_per_nit(Float.parseFloat(principal.txtPrecio.getText()));
-//            da.updateAllojtament(a);
-//        }
+        }       
         
         //Cambiar esto por la forma correcta 
         principal.tblMisAlojamientos.setVisible(false);
         principal.tblMisAlojamientos.setVisible(true);
         principal.btnGuardar.setEnabled(false);
         AbilitarTextBoxDatos(false);  
+    }
+    
+    public void CargarComentarios(int idPropiedad){
+        List<Comentari> comentarios = da.getComentaris(idPropiedad);
+        String aux = "";
+        for(Comentari c : comentarios){
+            aux = principal.txtComentarios.getText() + "Id: " + c.getId() + 
+                "id usaurio: " + c.getIdUsuari() + "\n" + c.getText() + "\n";
+        }
+        principal.txtComentarios.setText(aux);
     }
     
     public void Login(){

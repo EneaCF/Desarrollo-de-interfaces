@@ -15,19 +15,19 @@ public class Comentari {
     
     private int id;
     private String text;
-    private LocalDateTime dataihora;
-    private String usuari;
+    private String dataihora;
+    private int idUsuari;
     private int idAllotjament;
     private int idComentariPare;
 
     public Comentari() {
     }
 
-    public Comentari(int id, String text, LocalDateTime dataihora, String usuari, int idAllotjament, int idComentariPare) {
+    public Comentari(int id, String text, String dataihora, int idUsuari, int idAllotjament, int idComentariPare) {
         this.id = id;
         this.text = text;
         this.dataihora = dataihora;
-        this.usuari = usuari;
+        this.idUsuari = idUsuari;
         this.idAllotjament = idAllotjament;
         this.idComentariPare = idComentariPare;
     }
@@ -48,20 +48,20 @@ public class Comentari {
         this.text = text;
     }
 
-    public LocalDateTime getDataihora() {
+    public String getDataihora() {
         return dataihora;
     }
 
-    public void setDataihora(LocalDateTime dataihora) {
+    public void setDataihora(String dataihora) {
         this.dataihora = dataihora;
     }
 
-    public String getUsuari() {
-        return usuari;
+    public int getIdUsuari() {
+        return idUsuari;
     }
 
-    public void setUsuari(String usuari) {
-        this.usuari = usuari;
+    public void setIdUsuari(int idUsuari) {
+        this.idUsuari = idUsuari;
     }
 
     public int getIdAllotjament() {
@@ -82,7 +82,7 @@ public class Comentari {
 
     @Override
     public String toString() {
-        return "Comentari{" + "id=" + id + ", text=" + text + ", dataihora=" + dataihora + ", usuari=" + usuari + ", idAllotjament=" + idAllotjament + ", idComentariPare=" + idComentariPare + '}';
+        return "Comentari{" + "id=" + id + ", text=" + text + ", dataihora=" + dataihora + ", usuari=" + idUsuari + ", idAllotjament=" + idAllotjament + ", idComentariPare=" + idComentariPare + '}';
     }
     
     

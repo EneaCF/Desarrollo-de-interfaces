@@ -282,12 +282,41 @@ public class DataAcces {
         
     }
 
-    public ArrayList<Comentari> getComentaris(int idAllotjament) {
+//    public ArrayList<Comentari> getComentaris(int idAllotjament) {
+//        ArrayList<Comentari> comentaris = new ArrayList<>();
+//        String sql = "SELECT comentari.id, comentari.text, comentari.dataihora,"
+//                + " usuari.nom, usuari.llinatges, comentari.id_allotjament, comentari.id_comentari_pare FROM"
+//                + " comentari JOIN usuari ON comentari.id_usuari=usuari.id"
+//                + " WHERE id_allotjament = ?";
+//        try ( Connection connection = getConnection();  PreparedStatement selectStatement = connection.prepareStatement(sql);) {
+//            selectStatement.setInt(1, idAllotjament);
+//            ResultSet resultSet = selectStatement.executeQuery();
+//            while (resultSet.next()) {
+//                Comentari comentari = new Comentari();
+//                comentari.setId(resultSet.getInt("id"));
+//                comentari.setText(resultSet.getString("text"));
+//                //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//                //LocalDateTime dataihora = LocalDateTime.parse(resultSet.getString("dataihora"), dtf);
+//                //comentari.setDataihora(resultSet.getString("dataihora"));
+//
+//                comentari.setUsuari(resultSet.getString("nom") + " " + resultSet.getString("llinatges"));
+//                //String comentari = usuari + " said:\n " + text + "\nOn " + dataihora.toString();
+//                comentari.setIdAllotjament(resultSet.getInt("id_allotjament"));
+//                comentari.setIdComentariPare(resultSet.getInt("id_comentari_pare"));
+//                comentaris.add(comentari);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return comentaris;
+//    }
+
+      public ArrayList<Comentari> getComentaris(int idAllotjament) {
         ArrayList<Comentari> comentaris = new ArrayList<>();
         String sql = "SELECT comentari.id, comentari.text, comentari.dataihora,"
-                + " usuari.nom, usuari.llinatges, comentari.id_allotjament, comentari.id_comentari_pare FROM"
-                + " comentari JOIN usuari ON comentari.id_usuari=usuari.id"
-                + " WHERE id_allotjament = ?";
+                + " comentari.id_usuari, comentari.id_allotjament, comentari.id_comentari_pare"
+                + " FROM comentari WHERE id_allotjament = ?";
         try ( Connection connection = getConnection();  PreparedStatement selectStatement = connection.prepareStatement(sql);) {
             selectStatement.setInt(1, idAllotjament);
             ResultSet resultSet = selectStatement.executeQuery();
@@ -295,15 +324,18 @@ public class DataAcces {
                 Comentari comentari = new Comentari();
                 comentari.setId(resultSet.getInt("id"));
                 comentari.setText(resultSet.getString("text"));
-                //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-                //LocalDateTime dataihora = LocalDateTime.parse(resultSet.getString("dataihora"), dtf);
-                //comentari.setDataihora(resultSet.getString("dataihora"));
-
-                comentari.setUsuari(resultSet.getString("nom") + " " + resultSet.getString("llinatges"));
-                //String comentari = usuari + " said:\n " + text + "\nOn " + dataihora.toString();
+                comentari.setDataihora(resultSet.getString("dataihora"));
+                comentari.setIdUsuari(resultSet.getInt("id_usuari"));
                 comentari.setIdAllotjament(resultSet.getInt("id_allotjament"));
                 comentari.setIdComentariPare(resultSet.getInt("id_comentari_pare"));
                 comentaris.add(comentari);
+                /*
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime dataihora = LocalDateTime.parse(resultSet.getString("dataihora"), dtf);
+                System.out.println(getUser(resultSet.getInt("id_usuari")).getNom()
+                        + " said:\n " + resultSet.getString("text") + "\nOn "
+                        + dataihora.toString());
+                 */
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -311,7 +343,8 @@ public class DataAcces {
 
         return comentaris;
     }
-
+      
+      
     public float getValoracioAllotjamentAvg(int idAllotjament) {
         float valoracioAvg = 0.0f;
         String sql = "SELECT AVG(valoracio) AS avg_valoracio FROM valoracio WHERE id_allotjament = ?";

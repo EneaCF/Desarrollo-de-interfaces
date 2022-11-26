@@ -486,7 +486,7 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JPanel pnlUsuLog;
     public javax.swing.JPanel pnlUsuario;
     public javax.swing.JTable tblMisAlojamientos;
-    private javax.swing.JTextArea txtComentarios;
+    public javax.swing.JTextArea txtComentarios;
     public javax.swing.JTextArea txtDescripcion;
     public javax.swing.JTextField txtDireccion;
     public javax.swing.JTextField txtId;
