@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.enea.diej01v2.vista;
 
 import com.enea.diej01v2.controlador.Controlador;
@@ -18,10 +14,13 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class Principal extends javax.swing.JFrame {
     public DataAcces da;
+    
+    
     /**
      * Creates new form Principal
      */
     public Principal() {
+        
         try {
             // Set System L&F
             UIManager.setLookAndFeel(
@@ -335,8 +334,13 @@ public class Principal extends javax.swing.JFrame {
         jLabel16.setBounds(20, 10, 50, 60);
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
         pnlUsuLog.add(btnSalir);
-        btnSalir.setBounds(450, 30, 72, 23);
+        btnSalir.setBounds(432, 30, 90, 23);
 
         pnlBg.add(pnlUsuLog);
         pnlUsuLog.setBounds(20, 10, 550, 70);
@@ -437,6 +441,10 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMunicipioActionPerformed
 
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -483,7 +491,7 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JPanel pnlLogin;
     public javax.swing.JPanel pnlMain;
     private javax.swing.JPanel pnlMisAlojamientos;
-    private javax.swing.JPanel pnlUsuLog;
+    public javax.swing.JPanel pnlUsuLog;
     public javax.swing.JPanel pnlUsuario;
     public javax.swing.JTable tblMisAlojamientos;
     private javax.swing.JTextArea txtComentarios;

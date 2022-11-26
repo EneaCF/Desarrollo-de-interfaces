@@ -1,11 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.enea.diej01v2.controlador;
 
 import com.enea.diej01v2.modelo.Allotjament;
 import com.enea.diej01v2.modelo.DataAcces;
+import com.enea.diej01v2.modelo.Municipi;
 import com.enea.diej01v2.modelo.Usuari;
 import com.enea.diej01v2.vista.Principal;
 import java.awt.event.ActionEvent;
@@ -48,14 +45,6 @@ public class Controlador implements ActionListener{
         principal.txtUsuarioEmail.setText(usuario.getEmail());
         principal.txtUsuarioPassword.setText(usuario.getPassword());
     }
-    
-    //BORRAR?
-    public void LimpiarTabla(JTable tabla){
-        principal.tblMisAlojamientos.setModel(new DefaultTableModel());
-        ListarMisAlojamientos(tabla);
-    }
-    
-    
     
     
     public void ListarMisAlojamientos(JTable tabla){
@@ -158,7 +147,7 @@ public class Controlador implements ActionListener{
     }
     
     public void BotonNuevo(){
-        //principal.txtId.setText("");
+        principal.txtId.setText("0");
         principal.txtNombre.setText("");
         principal.txtDireccion.setText("");
         principal.txtMunicipio.setText("");
@@ -171,17 +160,35 @@ public class Controlador implements ActionListener{
         principal.btnGuardar.setEnabled(true);
     }
     
+    public int getIdMunicipi(String municipio){
+        List<Municipi> municipis = da.getMunicipis();
+        for(Municipi m : municipis){
+            if(m.getNom().equalsIgnoreCase(municipio)){
+                return m.getId();
+            }
+        } 
+        return 1;
+    }
+    
     public void BotonGuardar(){
-        
+        int aux = getIdMunicipi(principal.txtMunicipio.getText());
         Allotjament allotjament = new Allotjament(Integer.parseInt(principal.txtId.getText()),
                 principal.txtNombre.getText(),
                 principal.txtDescripcion.getText(),
                 principal.txtDireccion.getText(),
-                principal.txtMunicipio.getText(), 
+                //principal.txtMunicipio.getText()
+                String.valueOf(aux), 
                 Integer.parseInt(principal.txtPlazas.getText()),
                 Float.parseFloat(principal.txtPrecio.getText()
         ));
-        da.updateAllojtament(allotjament);
+        if (Integer.parseInt(principal.txtId.getText())==0) {
+            da.insertAllotjament(allotjament);
+        }else{
+            da.updateAllojtament(allotjament);
+        }
+        
+
+       
         //Cambiar esto por la forma correcta 
         principal.tblMisAlojamientos.setVisible(false);
         principal.tblMisAlojamientos.setVisible(true);
@@ -196,7 +203,6 @@ public class Controlador implements ActionListener{
             "Email:", email,
             "Password:", password
         };
-
         int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
             if (password.getText().equals(da.findUserPassword(email.getText()))) {
@@ -226,9 +232,6 @@ public class Controlador implements ActionListener{
     //List<Allotjament> alojamientos = da.getAllotjaments(4);
     @Override
     public void actionPerformed(ActionEvent e) {
-//        if (e.getSource()==principal.btnListarAlojamientos) {
-//            ListarMisAlojamientos(principal.tblMisAlojamientos);
-//        }
         if(e.getSource()==principal.btnModificar){
             BotonModificar();
         }

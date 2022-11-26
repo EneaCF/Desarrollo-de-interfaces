@@ -1,10 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.enea.diej01v2.modelo;
 
 import com.enea.diej01v2.controlador.Controlador;
+import java.util.List;
 
 /**
  *
@@ -31,7 +29,7 @@ public class Allotjament {
         this.adresa = adresa;
         this.municipi = municipi;
         this.num_persones = num_persones;
-        this.preu_per_nit = preu_per_nit;
+        this.preu_per_nit = preu_per_nit; 
     }
 
     public int getId() {
@@ -90,15 +88,24 @@ public class Allotjament {
         this.preu_per_nit = preu_per_nit;
     }
     
+//    public int getId_municipi(String municipio) {
+//        DataAcces da = new DataAcces();
+//        List<Municipi> municipis = da.getMunicipis();
+//        for(Municipi m : municipis){
+//            if(m.getNom().equalsIgnoreCase(municipio)){
+//                return m.getId();
+//            }
+//        } 
+//        return 1;
+//    }
+    
 
     @Override
     public String toString() {
         return "Allotjament{" + "id=" + id + ", nom=" + nom + ", descripcio=" + descripcio + ", adresa=" + adresa + ", municipi=" + municipi + ", num_persones=" + num_persones + ", preu_per_nit=" + preu_per_nit + '}';
     }
 
-    int getId_municipi() {
-        return 2;
-    }
+    
 
     int getId_propietari() {
         return Controlador.usuario.getId();

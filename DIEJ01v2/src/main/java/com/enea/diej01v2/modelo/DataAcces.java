@@ -167,7 +167,7 @@ public class DataAcces {
             updateStatement.setString(2, allotjament.getDescripcio());
             updateStatement.setInt(3, allotjament.getNum_persones());
             updateStatement.setString(4, allotjament.getAdresa());
-            updateStatement.setInt(5, allotjament.getId_municipi());
+            updateStatement.setInt(5, Integer.parseInt(allotjament.getMunicipi()));
             updateStatement.setInt(6, allotjament.getId_propietari());
             updateStatement.setBoolean(7, false);
             updateStatement.setFloat(8, allotjament.getPReu_per_nit());
@@ -213,7 +213,7 @@ public class DataAcces {
             insertStatement.setString(2, allotjament.getDescripcio());
             insertStatement.setInt(3, allotjament.getNum_persones());
             insertStatement.setString(4, allotjament.getAdresa());
-            insertStatement.setInt(5, allotjament.getId_municipi());
+            insertStatement.setInt(5, Integer.parseInt(allotjament.getMunicipi()));
             insertStatement.setInt(6, allotjament.getId_propietari());
             insertStatement.setBoolean(7, false);
             insertStatement.setFloat(8, allotjament.getPReu_per_nit());
