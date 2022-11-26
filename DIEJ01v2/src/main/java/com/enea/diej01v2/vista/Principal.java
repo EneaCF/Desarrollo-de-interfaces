@@ -14,6 +14,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class Principal extends javax.swing.JFrame {
     public DataAcces da;
+   
     
     
     /**
@@ -72,16 +73,16 @@ public class Principal extends javax.swing.JFrame {
         txtPlazas = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
-        btnNuevo = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
+        btnNuevo = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtComentarios = new javax.swing.JTextArea();
         pnlUsuLog = new javax.swing.JPanel();
         txtUsuario = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        btnSalir = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         pnlUsuario = new javax.swing.JPanel();
         txtUsuarioId = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -272,11 +273,6 @@ public class Principal extends javax.swing.JFrame {
         pnlDatos.add(txtPrecio);
         txtPrecio.setBounds(280, 290, 71, 21);
 
-        btnNuevo.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        btnNuevo.setText("Nuevo");
-        pnlDatos.add(btnNuevo);
-        btnNuevo.setBounds(20, 360, 90, 22);
-
         btnGuardar.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.setEnabled(false);
@@ -287,6 +283,11 @@ public class Principal extends javax.swing.JFrame {
         btnModificar.setText("Modificar");
         pnlDatos.add(btnModificar);
         btnModificar.setBounds(120, 360, 90, 22);
+
+        btnNuevo.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btnNuevo.setText("Nuevo");
+        pnlDatos.add(btnNuevo);
+        btnNuevo.setBounds(20, 360, 90, 22);
 
         pnlBg.add(pnlDatos);
         pnlDatos.setBounds(580, 40, 490, 400);
@@ -327,20 +328,15 @@ public class Principal extends javax.swing.JFrame {
         txtUsuario.setForeground(new java.awt.Color(0, 0, 255));
         txtUsuario.setText("jLabel10");
         pnlUsuLog.add(txtUsuario);
-        txtUsuario.setBounds(90, 30, 310, 22);
+        txtUsuario.setBounds(90, 30, 330, 22);
 
         jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\Enea\\Documents\\Desarrollo de interfaces\\DIEJ01v2\\src\\main\\java\\com\\enea\\diej01v2\\img\\baseline_person_black_24dp.png")); // NOI18N
         pnlUsuLog.add(jLabel16);
         jLabel16.setBounds(20, 10, 50, 60);
 
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
-        pnlUsuLog.add(btnSalir);
-        btnSalir.setBounds(432, 30, 90, 23);
+        jButton1.setText("Salir");
+        pnlUsuLog.add(jButton1);
+        jButton1.setBounds(450, 30, 72, 23);
 
         pnlBg.add(pnlUsuLog);
         pnlUsuLog.setBounds(20, 10, 550, 70);
@@ -441,10 +437,6 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMunicipioActionPerformed
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalirActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -462,9 +454,9 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JButton btnLogin;
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnNuevo;
-    public javax.swing.JButton btnSalir;
     public javax.swing.JButton btnUsuarioGuardar;
     public javax.swing.JButton btnUsuarioModificar;
+    public javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -484,8 +476,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JPanel pnlBg;
+    public javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JPanel pnlBg;
     private javax.swing.JPanel pnlDatos;
     private javax.swing.JPanel pnlFotos;
     public javax.swing.JPanel pnlLogin;

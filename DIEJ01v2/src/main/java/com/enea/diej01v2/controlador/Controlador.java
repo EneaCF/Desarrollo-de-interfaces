@@ -33,9 +33,10 @@ public class Controlador implements ActionListener{
         this.principal.btnGuardar.addActionListener(this);
         this.principal.btnModificar.addActionListener(this);
         this.principal.btnLogin.addActionListener(this);
+        this.principal.jButton1.addActionListener(this);
         this.principal.btnUsuarioModificar.addActionListener(this);
         this.principal.btnUsuarioGuardar.addActionListener(this);
-        this.principal.btnSalir.addActionListener(this);
+        
     }
     
     public void CargarDatosUsuario(){
@@ -156,6 +157,8 @@ public class Controlador implements ActionListener{
         principal.txtPlazas.setText("");
         if(!principal.txtNombre.isEnabled()){
             AbilitarTextBoxDatos(true);
+        }else{
+            AbilitarTextBoxDatos(false);
         }
         principal.btnGuardar.setEnabled(true);
     }
@@ -171,7 +174,7 @@ public class Controlador implements ActionListener{
     }
     
     public void BotonGuardar(){
-        int aux = getIdMunicipi(principal.txtMunicipio.getText());
+        int aux = getIdMunicipi(principal.txtMunicipio.getText());  
         Allotjament allotjament = new Allotjament(Integer.parseInt(principal.txtId.getText()),
                 principal.txtNombre.getText(),
                 principal.txtDescripcion.getText(),
@@ -181,14 +184,33 @@ public class Controlador implements ActionListener{
                 Integer.parseInt(principal.txtPlazas.getText()),
                 Float.parseFloat(principal.txtPrecio.getText()
         ));
-        if (Integer.parseInt(principal.txtId.getText())==0) {
+                if (Integer.parseInt(principal.txtId.getText())==0) {
             da.insertAllotjament(allotjament);
         }else{
             da.updateAllojtament(allotjament);
         }
+                
+                
+//        Allotjament a = new Allotjament();
+//        if (Integer.parseInt(principal.txtId.getText())==0) {
+//            a.setNom(principal.txtNombre.getText());
+//            a.setDescripcio(principal.txtDescripcion.getText());
+//            a.setAdresa(principal.txtDireccion.getText());
+//            a.setMunicipi(String.valueOf(aux));
+//            a.setNum_persones(Integer.parseInt(principal.txtPlazas.getText()));
+//            a.setPreu_per_nit(Float.parseFloat(principal.txtPrecio.getText()));
+//            da.insertAllotjament(a);
+//        }else{
+//            a.setId(Integer.parseInt(principal.txtId.getText()));
+//            a.setNom(principal.txtNombre.getText());
+//            a.setDescripcio(principal.txtDescripcion.getText());
+//            a.setAdresa(principal.txtDireccion.getText());
+//            a.setMunicipi(String.valueOf(aux));
+//            a.setNum_persones(Integer.parseInt(principal.txtPlazas.getText()));
+//            a.setPreu_per_nit(Float.parseFloat(principal.txtPrecio.getText()));
+//            da.updateAllojtament(a);
+//        }
         
-
-       
         //Cambiar esto por la forma correcta 
         principal.tblMisAlojamientos.setVisible(false);
         principal.tblMisAlojamientos.setVisible(true);
@@ -229,7 +251,6 @@ public class Controlador implements ActionListener{
         principal.pnlMain.setVisible(false);
     }
   
-    //List<Allotjament> alojamientos = da.getAllotjaments(4);
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==principal.btnModificar){
@@ -251,7 +272,7 @@ public class Controlador implements ActionListener{
         if(e.getSource()==principal.btnUsuarioGuardar){
             BotonGuardarUsuario();
         }
-        if(e.getSource()==principal.btnSalir){
+        if(e.getSource()==principal.jButton1){
             Logout();
         }
     }
