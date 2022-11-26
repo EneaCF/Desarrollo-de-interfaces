@@ -1,5 +1,6 @@
 package com.enea.diej01v2.modelo;
 
+import com.enea.diej01v2.vista.Principal;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -171,8 +172,30 @@ public class DataAcces {
             updateStatement.setBoolean(7, false);
             updateStatement.setFloat(8, allotjament.getPReu_per_nit());
             
-            System.out.println(allotjament.getId() + allotjament.getNom() + allotjament.getDescripcio() + allotjament.getNum_persones() + allotjament.getAdresa() 
-            + allotjament.getId_municipi() + allotjament.getId_propietari() + "false" + allotjament.getPReu_per_nit());
+            //System.out.println(allotjament.getId() + allotjament.getNom() + allotjament.getDescripcio() + allotjament.getNum_persones() + allotjament.getAdresa() 
+            //+ allotjament.getId_municipi() + allotjament.getId_propietari() + "false" + allotjament.getPReu_per_nit());
+            result = updateStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    
+    
+    
+     public int updateUsuari(Usuari usuari) {
+        int result = 0;
+        String sql = "UPDATE usuari SET nom = ?, llinatges = ?,"
+                + " email = ?, password = ?"
+                + " WHERE id = ?";
+        try ( Connection connection = getConnection();  PreparedStatement updateStatement = connection.prepareStatement(sql);) {
+            //updateStatement.setInt(9, allotjament.getId());
+            updateStatement.setString(1, usuari.getNom());
+            updateStatement.setString(2, usuari.getLlinatges());
+            updateStatement.setString(3, usuari.getEmail());
+            updateStatement.setString(4, usuari.getPassword());
+            updateStatement.setInt(5, usuari.getId());
+            
             result = updateStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

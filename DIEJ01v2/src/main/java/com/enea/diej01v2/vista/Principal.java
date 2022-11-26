@@ -353,19 +353,19 @@ public class Principal extends javax.swing.JFrame {
         pnlUsuario.add(btnUsuarioModificar);
         btnUsuarioModificar.setBounds(330, 450, 110, 23);
 
-        txtUsuarioPassword.setText("jTextField1");
+        txtUsuarioPassword.setEnabled(false);
         pnlUsuario.add(txtUsuarioPassword);
         txtUsuarioPassword.setBounds(390, 370, 280, 22);
 
-        txtUsuarioNombre.setText("jTextField1");
+        txtUsuarioNombre.setEnabled(false);
         pnlUsuario.add(txtUsuarioNombre);
         txtUsuarioNombre.setBounds(390, 250, 280, 22);
 
-        txtUsuarioApellido.setText("jTextField1");
+        txtUsuarioApellido.setEnabled(false);
         pnlUsuario.add(txtUsuarioApellido);
         txtUsuarioApellido.setBounds(390, 290, 280, 22);
 
-        txtUsuarioEmail.setText("jTextField1");
+        txtUsuarioEmail.setEnabled(false);
         pnlUsuario.add(txtUsuarioEmail);
         txtUsuarioEmail.setBounds(390, 330, 280, 22);
 
