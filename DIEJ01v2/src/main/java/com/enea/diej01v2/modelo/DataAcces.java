@@ -221,19 +221,19 @@ public class DataAcces {
                 result = getIdLastInsertedAllotjament();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return result;
     }
 
-    private int getIdLastInsertedAllotjament() {
+    public int getIdLastInsertedAllotjament() {
         int idAllotjament = 0;
-        String sql = "SELECT MAX(id_allotjament) AS last_id_allotament FROM allotjament";
+        String sql = "SELECT MAX(id) AS last_id_allotjament FROM allotjament";
         try ( Connection connection = getConnection();  PreparedStatement selectStatement = connection.prepareStatement(sql);) {
 
             ResultSet resultSet = selectStatement.executeQuery();
             while (resultSet.next()) {
-                idAllotjament = resultSet.getInt("last_id_allotjament");            
+                idAllotjament = resultSet.getInt("last_id_allotjament");  
             }
 
         } catch (SQLException e) {
@@ -262,15 +262,16 @@ public class DataAcces {
         return serveis;
     }
 
-    public int insertServei(int idServei, int idAllotjament) {
+    public int insertServei(int idservicio, int idAllotjament) {
         int result = 0;
         String sql = "INSERT INTO servei_allotjament (id_servei, id_allotjament) VALUES (?,?)";
         try ( Connection connection = getConnection();  PreparedStatement insertStatement = connection.prepareStatement(sql);) {
-            insertStatement.setInt(1, idServei);
+            insertStatement.setInt(1, idservicio);
             insertStatement.setInt(2, idAllotjament);
             result = insertStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("CATH DA INSERTSERVEI");
         }
         return result;
     }
@@ -314,7 +315,7 @@ public class DataAcces {
       
     public float getValoracioAllotjamentAvg(int idAllotjament) {
         float valoracioAvg = 0.0f;
-        String sql = "SELECT AVG(valoracio) AS avg_valoracio FROM valoracio WHERE id_allotjament = ?";
+        String sql = "SELECT AVG(num_estrelles) AS avg_valoracio FROM valoracio WHERE id_allotjament = ?";
         try ( Connection connection = getConnection();  PreparedStatement selectStatement = connection.prepareStatement(sql);) {
             selectStatement.setInt(1, idAllotjament);
             ResultSet resultSet = selectStatement.executeQuery();

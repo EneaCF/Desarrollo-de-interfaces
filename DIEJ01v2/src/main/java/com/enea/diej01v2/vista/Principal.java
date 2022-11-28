@@ -39,11 +39,32 @@ public class Principal extends javax.swing.JFrame {
         
         iconoUsuario.setIcon(CargarImagenes("baseline_person_black_24dp"));
         iconoLogo.setIcon(CargarImagenes("logos-villaonline1"));
+        CargaInicialImgCkb();
         
+        //pnlServicios.setVisible(false);
+        pnlCheckBox.setVisible(false);
+                
         this.setSize(1100, 700);
         this.setLocationRelativeTo(null);
     }
     
+    public void CargaInicialImgCkb(){
+        txtServicio1.setIcon(CargarImagenes("piscina"));
+        txtServicio2.setIcon(CargarImagenes("mascotas"));
+        txtServicio3.setIcon(CargarImagenes("aire"));
+        txtServicio4.setIcon(CargarImagenes("ascensor"));
+        txtServicio5.setIcon(CargarImagenes("aparcamiento"));
+        txtServicio6.setIcon(CargarImagenes("wifi"));
+    }
+    
+    public void SetVisibleCkb(){
+        txtServicio1.setVisible(true);
+        txtServicio2.setVisible(true);
+        txtServicio3.setVisible(true);
+        txtServicio4.setVisible(true);
+        txtServicio5.setVisible(true);
+        txtServicio6.setVisible(true);
+    }
     //Solucion para aplicar rutas relativas a imagenes
     public Icon CargarImagenes(String img){
         Icon icon = new ImageIcon();
@@ -71,6 +92,8 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         pnlMain = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         pnlBg = new javax.swing.JPanel();
@@ -104,6 +127,15 @@ public class Principal extends javax.swing.JFrame {
         txtServicio3 = new javax.swing.JLabel();
         txtServicio6 = new javax.swing.JLabel();
         txtServicio5 = new javax.swing.JLabel();
+        pnlCheckBox = new javax.swing.JPanel();
+        ckbPiscina = new javax.swing.JCheckBox();
+        ckbMascotas = new javax.swing.JCheckBox();
+        ckbAire = new javax.swing.JCheckBox();
+        ckbAscensor = new javax.swing.JCheckBox();
+        ckbAparcamiento = new javax.swing.JCheckBox();
+        ckbWifi = new javax.swing.JCheckBox();
+        txtValoracion = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtComentarios = new javax.swing.JTextArea();
@@ -218,40 +250,40 @@ public class Principal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel1.setText("ID:");
         pnlDatos.add(jLabel1);
-        jLabel1.setBounds(30, 30, 30, 20);
+        jLabel1.setBounds(30, 50, 30, 20);
 
         txtId.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtId.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         txtId.setEnabled(false);
         pnlDatos.add(txtId);
-        txtId.setBounds(60, 30, 64, 21);
+        txtId.setBounds(60, 50, 64, 21);
 
         jLabel2.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel2.setText("Nombre:");
         pnlDatos.add(jLabel2);
-        jLabel2.setBounds(150, 30, 50, 20);
+        jLabel2.setBounds(150, 50, 50, 20);
 
         txtNombre.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtNombre.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         txtNombre.setEnabled(false);
         pnlDatos.add(txtNombre);
-        txtNombre.setBounds(210, 30, 260, 21);
+        txtNombre.setBounds(210, 50, 260, 21);
 
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel3.setText("Dirección:");
         pnlDatos.add(jLabel3);
-        jLabel3.setBounds(30, 70, 60, 20);
+        jLabel3.setBounds(30, 90, 60, 20);
 
         txtDireccion.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtDireccion.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         txtDireccion.setEnabled(false);
         pnlDatos.add(txtDireccion);
-        txtDireccion.setBounds(100, 70, 370, 21);
+        txtDireccion.setBounds(100, 90, 370, 21);
 
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel4.setText("Descripcion:");
         pnlDatos.add(jLabel4);
-        jLabel4.setBounds(30, 150, 90, 20);
+        jLabel4.setBounds(30, 170, 90, 20);
 
         txtMunicipio.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtMunicipio.setDisabledTextColor(new java.awt.Color(102, 102, 102));
@@ -262,12 +294,12 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         pnlDatos.add(txtMunicipio);
-        txtMunicipio.setBounds(100, 110, 370, 21);
+        txtMunicipio.setBounds(100, 130, 370, 21);
 
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel5.setText("Municipio:");
         pnlDatos.add(jLabel5);
-        jLabel5.setBounds(30, 110, 60, 20);
+        jLabel5.setBounds(30, 130, 60, 20);
 
         txtDescripcion.setColumns(20);
         txtDescripcion.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
@@ -281,7 +313,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txtDescripcion);
 
         pnlDatos.add(jScrollPane2);
-        jScrollPane2.setBounds(30, 180, 440, 77);
+        jScrollPane2.setBounds(30, 200, 440, 77);
 
         jLabel6.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel6.setText("Plazas:");
@@ -309,43 +341,105 @@ public class Principal extends javax.swing.JFrame {
         btnGuardar.setText("Guardar");
         btnGuardar.setEnabled(false);
         pnlDatos.add(btnGuardar);
-        btnGuardar.setBounds(380, 380, 90, 22);
+        btnGuardar.setBounds(380, 390, 90, 22);
 
         btnModificar.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         btnModificar.setText("Modificar");
         pnlDatos.add(btnModificar);
-        btnModificar.setBounds(120, 380, 90, 22);
+        btnModificar.setBounds(120, 390, 90, 22);
 
         btnNuevo.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         btnNuevo.setText("Nuevo");
         pnlDatos.add(btnNuevo);
-        btnNuevo.setBounds(20, 380, 90, 22);
+        btnNuevo.setBounds(20, 390, 90, 22);
 
         pnlServicios.setBackground(new java.awt.Color(255, 255, 255));
         pnlServicios.setLayout(null);
         pnlServicios.add(txtServicio1);
-        txtServicio1.setBounds(50, 0, 40, 40);
+        txtServicio1.setBounds(40, 0, 40, 40);
 
         txtServicio2.setMaximumSize(new java.awt.Dimension(40, 40));
         txtServicio2.setMinimumSize(new java.awt.Dimension(40, 40));
         pnlServicios.add(txtServicio2);
-        txtServicio2.setBounds(110, 0, 40, 40);
+        txtServicio2.setBounds(100, 0, 40, 40);
         pnlServicios.add(txtServicio4);
-        txtServicio4.setBounds(230, 0, 40, 40);
+        txtServicio4.setBounds(220, 0, 40, 40);
 
         txtServicio3.setPreferredSize(new java.awt.Dimension(40, 40));
         pnlServicios.add(txtServicio3);
-        txtServicio3.setBounds(170, 0, 40, 40);
+        txtServicio3.setBounds(160, 0, 40, 40);
         pnlServicios.add(txtServicio6);
-        txtServicio6.setBounds(350, 0, 40, 40);
+        txtServicio6.setBounds(340, 0, 40, 40);
         pnlServicios.add(txtServicio5);
-        txtServicio5.setBounds(290, 0, 40, 40);
+        txtServicio5.setBounds(280, 0, 40, 40);
+
+        pnlCheckBox.setBackground(new java.awt.Color(255, 255, 255));
+
+        ckbPiscina.setBackground(new java.awt.Color(255, 255, 255));
+
+        ckbMascotas.setBackground(new java.awt.Color(255, 255, 255));
+
+        ckbAire.setBackground(new java.awt.Color(255, 255, 255));
+
+        ckbAscensor.setBackground(new java.awt.Color(255, 255, 255));
+
+        ckbAparcamiento.setBackground(new java.awt.Color(255, 255, 255));
+
+        ckbWifi.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pnlCheckBoxLayout = new javax.swing.GroupLayout(pnlCheckBox);
+        pnlCheckBox.setLayout(pnlCheckBoxLayout);
+        pnlCheckBoxLayout.setHorizontalGroup(
+            pnlCheckBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+            .addGroup(pnlCheckBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlCheckBoxLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(ckbPiscina, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(40, 40, 40)
+                    .addComponent(ckbMascotas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(40, 40, 40)
+                    .addComponent(ckbAire, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(40, 40, 40)
+                    .addComponent(ckbAscensor, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(40, 40, 40)
+                    .addComponent(ckbAparcamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(40, 40, 40)
+                    .addComponent(ckbWifi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        pnlCheckBoxLayout.setVerticalGroup(
+            pnlCheckBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+            .addGroup(pnlCheckBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlCheckBoxLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(pnlCheckBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(ckbPiscina)
+                        .addComponent(ckbMascotas)
+                        .addComponent(ckbAire)
+                        .addComponent(ckbAscensor)
+                        .addComponent(ckbAparcamiento)
+                        .addComponent(ckbWifi))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        pnlServicios.add(pnlCheckBox);
+        pnlCheckBox.setBounds(30, 40, 360, 20);
 
         pnlDatos.add(pnlServicios);
-        pnlServicios.setBounds(30, 330, 440, 40);
+        pnlServicios.setBounds(30, 320, 440, 60);
+
+        txtValoracion.setText("0");
+        pnlDatos.add(txtValoracion);
+        txtValoracion.setBounds(260, 20, 20, 16);
+
+        jLabel12.setText("Valoración media:");
+        pnlDatos.add(jLabel12);
+        jLabel12.setBounds(150, 20, 100, 16);
 
         pnlBg.add(pnlDatos);
-        pnlDatos.setBounds(580, 20, 490, 420);
+        pnlDatos.setBounds(580, 10, 490, 430);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Comentarios"));
@@ -507,12 +601,21 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JButton btnNuevo;
     public javax.swing.JButton btnUsuarioGuardar;
     public javax.swing.JButton btnUsuarioModificar;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    public javax.swing.JCheckBox ckbAire;
+    public javax.swing.JCheckBox ckbAparcamiento;
+    public javax.swing.JCheckBox ckbAscensor;
+    public javax.swing.JCheckBox ckbMascotas;
+    public javax.swing.JCheckBox ckbPiscina;
+    public javax.swing.JCheckBox ckbWifi;
     private javax.swing.JLabel iconoLogo;
     private javax.swing.JLabel iconoUsuario;
     public javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -529,6 +632,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     public javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JPanel pnlBg;
+    public javax.swing.JPanel pnlCheckBox;
     private javax.swing.JPanel pnlDatos;
     private javax.swing.JPanel pnlFotos;
     public javax.swing.JPanel pnlLogin;
@@ -558,5 +662,6 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JLabel txtUsuarioId;
     public javax.swing.JTextField txtUsuarioNombre;
     public javax.swing.JTextField txtUsuarioPassword;
+    public javax.swing.JLabel txtValoracion;
     // End of variables declaration//GEN-END:variables
 }

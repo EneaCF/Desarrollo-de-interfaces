@@ -7,11 +7,13 @@ import com.enea.diej01v2.modelo.Municipi;
 import com.enea.diej01v2.modelo.Usuari;
 import com.enea.diej01v2.modelo.Servei;
 import com.enea.diej01v2.vista.Principal;
-import com.sun.security.auth.NTSidPrimaryGroupPrincipal;
-import java.awt.Color;
+import com.mysql.cj.util.StringUtils;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.Normalizer;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTable;
@@ -30,7 +32,8 @@ public class Controlador implements ActionListener{
     Principal principal = new Principal();
     DefaultTableModel model = new DefaultTableModel();
     Allotjament allotjamentSel = new Allotjament();
-
+    public List<JCheckBox> ckb = new ArrayList();
+    
     public Controlador(Principal p) {
         this.principal = p;
         this.principal.btnNuevo.addActionListener(this);
@@ -41,6 +44,15 @@ public class Controlador implements ActionListener{
         this.principal.btnUsuarioModificar.addActionListener(this);
         this.principal.btnUsuarioGuardar.addActionListener(this);
         
+    }
+    
+    public void CargarListaCheckBox(){
+        ckb.add(principal.ckbPiscina);
+        ckb.add(principal.ckbMascotas);
+        ckb.add(principal.ckbAire);
+        ckb.add(principal.ckbAscensor);
+        ckb.add(principal.ckbAparcamiento);
+        ckb.add(principal.ckbWifi);
     }
     
     public void CargarDatosUsuario(){
@@ -84,7 +96,7 @@ public class Controlador implements ActionListener{
                     principal.txtDescripcion.setText(allotjamentSel.getDescripcio());
                     principal.txtPrecio.setText(String.valueOf(allotjamentSel.getPReu_per_nit()));
                     principal.txtPlazas.setText(String.valueOf(allotjamentSel.getNum_persones()));
-                    
+                    principal.txtValoracion.setText(String.valueOf(da.getValoracioAllotjamentAvg(allotjamentSel.getId())));
                     CargarComentarios(allotjamentSel.getId());
                     CargarServicios(allotjamentSel.getId());
                 }
@@ -124,11 +136,13 @@ public class Controlador implements ActionListener{
                 principal.txtServicio4.setVisible(false);
                 principal.txtServicio5.setVisible(false);
                 principal.txtServicio6.setVisible(false);
+                principal.pnlCheckBox.setVisible(false);
                 break;
         }
     }
     
     public void CargarServicios(int idAlojamiento){
+        principal.pnlServicios.setVisible(true);
         List<Servei> servicios = da.getServeisAllotjament(idAlojamiento);
         int aux = 1;
         if (servicios.isEmpty()) {
@@ -243,8 +257,12 @@ public class Controlador implements ActionListener{
         principal.txtPlazas.setText("");
         if(!principal.txtNombre.isEnabled()){
             AbilitarTextBoxDatos(true);
+            principal.pnlCheckBox.setVisible(true);
+            principal.SetVisibleCkb();
+            CargarListaCheckBox();
         }else{
             AbilitarTextBoxDatos(false);
+            principal.pnlCheckBox.setVisible(false);
         }
         principal.btnGuardar.setEnabled(true);
     }
@@ -252,7 +270,9 @@ public class Controlador implements ActionListener{
     public int getIdMunicipi(String municipio){
         List<Municipi> municipis = da.getMunicipis();
         for(Municipi m : municipis){
-            if(m.getNom().equalsIgnoreCase(municipio)){
+            String aux = Normalizer.normalize(m.getNom() , Normalizer.Form.NFD);
+            aux = aux.replaceAll("[^\\p{ASCII}]", "");
+            if(aux.equalsIgnoreCase(municipio)){
                 return m.getId();
             }
         } 
@@ -260,7 +280,8 @@ public class Controlador implements ActionListener{
     }
     
     public void BotonGuardar(){
-        int aux = getIdMunicipi(principal.txtMunicipio.getText());  
+        int aux = getIdMunicipi(principal.txtMunicipio.getText());
+        //int auxid = GetLastId() +1;
         Allotjament allotjament = new Allotjament(Integer.parseInt(principal.txtId.getText()),
                 principal.txtNombre.getText(),
                 principal.txtDescripcion.getText(),
@@ -270,10 +291,12 @@ public class Controlador implements ActionListener{
                 Integer.parseInt(principal.txtPlazas.getText()),
                 Float.parseFloat(principal.txtPrecio.getText()
         ));
-                if (Integer.parseInt(principal.txtId.getText())==0) {
+        
+        if (Integer.parseInt(principal.txtId.getText())==0) {
             da.insertAllotjament(allotjament);
+            //InsertarServicios(da.getIdLastInsertedAllotjament()); 
         }else{
-            da.updateAllojtament(allotjament);
+            da.updateAllojtament(allotjament); 
         }       
         
         //Cambiar esto por la forma correcta 
@@ -281,6 +304,8 @@ public class Controlador implements ActionListener{
         principal.tblMisAlojamientos.setVisible(true);
         principal.btnGuardar.setEnabled(false);
         AbilitarTextBoxDatos(false);  
+        VisibleServicios("", 55);
+        
     }
     
     public void CargarComentarios(int idPropiedad){
@@ -350,4 +375,16 @@ public class Controlador implements ActionListener{
             Logout();
         }
     }
+    
+    //Servicios
+    
+//    private void InsertarServicios(int idAlojamiento) {
+//        for(JCheckBox c : ckb){
+//            if (c.isSelected()) {
+//                int aux = ckb.indexOf(c) + 1;
+//                //int aux = 2;
+//                da.insertServei(aux, idAlojamiento + 1);
+//            }
+//        }
+//    }
 }
