@@ -18,7 +18,7 @@ public class DataAcces {
         Connection connection = null;
         Properties properties = new Properties();
         try {
-            InputStream is = new FileInputStream("application.propierties");
+            InputStream is = new FileInputStream("src/main/java/com/enea/diej01v2/propiedades/application.propierties");
             properties.load(is);
             is.close();
             //properties.load(DataAcces.class.getClassLoader().getResourceAsStream("pro1/application.propierties"));
